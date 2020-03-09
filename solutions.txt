@@ -1,0 +1,22 @@
+(define my-reverse (lambda (lst)
+              (if (null? lst) '()
+                  (append (my-reverse (cdr lst))(list (car lst))))))
+
+(define palindrome? (lambda (lst)
+                      (equal? lst (my-reverse lst))))
+
+;recursive function to sum up all numbers of the list
+(define sum-list (lambda (lst)
+                   (if (null? lst)
+                       0
+                       (+ (car lst) (sum-list (cdr lst))))))
+
+;recursive function to sum up the first n numbers of positive integers
+(define sum-positive-int (lambda (n)
+                           (if (<= n 0)(display "Error! Number of terms to be evaluated should be positive");input validation-Error Checking
+                               (if (= n 1)
+                                   1
+                                   (+ n (sum-positive-int (- n 1)))))))
+
+;map applies the function sum-positive-int to each element of the list provided as a second argument
+(map sum-positive-int '(2 3 5));it returns the list with all evaluated sums: 1+2=3; 1+2+3=6; 1+2+3+4+5=15; =>(3 6 15) 
